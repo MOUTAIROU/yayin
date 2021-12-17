@@ -76,7 +76,7 @@ const redStyles = makeStyles({
 export default function Index() {
    const classes = redStyles();
 
-   
+
 
   return (
       <div>
@@ -174,12 +174,11 @@ export default function Index() {
                                   //displayEmpty
                                 //  inputProps={{ 'aria-label': 'Without label' }}
                                   >
-                                  <MenuItem value="">
-                                  <em>None</em>
-                                  </MenuItem>
-                                  <MenuItem  className = {classes.MenuItemBloc} value={10}>Ten</MenuItem>
-                                  <MenuItem  className = {classes.MenuItemBloc} value={20}>Twenty</MenuItem>
-                                  <MenuItem  className = {classes.MenuItemBloc} value={30}>Thirty</MenuItem>
+
+                                  <MenuItem  className = {classes.MenuItemBloc} value={10}>Programmes Fitness</MenuItem>
+                                  <MenuItem  className = {classes.MenuItemBloc} value={20}>Programmes Nutritions</MenuItem>
+                                  <MenuItem  className = {classes.MenuItemBloc} value={30}>Thérapies bien-être</MenuItem>
+                                  <MenuItem  className = {classes.MenuItemBloc} value={30}>Soins Energetique</MenuItem>
                                   </Select>
                           </Mobilesm>
 
@@ -191,12 +190,11 @@ export default function Index() {
                                 //displayEmpty
                               //  inputProps={{ 'aria-label': 'Without label' }}
                                 >
-                                <MenuItem value="">
-                                <em>None</em>
-                                </MenuItem>
-                                <MenuItem className = {classes.MenuItemBloc} value={10}>Ten</MenuItem>
-                                <MenuItem className = {classes.MenuItemBloc} value={20}>Twenty</MenuItem>
-                                <MenuItem className = {classes.MenuItemBloc} value={30}>Thirty</MenuItem>
+
+                                <MenuItem  className = {classes.MenuItemBloc} value={10}>Programmes Fitness</MenuItem>
+                                <MenuItem  className = {classes.MenuItemBloc} value={20}>Programmes Nutritions</MenuItem>
+                                <MenuItem  className = {classes.MenuItemBloc} value={30}>Thérapies bien-être</MenuItem>
+                                <MenuItem  className = {classes.MenuItemBloc} value={30}>Soins Energetique</MenuItem>
                                 </Select>
                           </Desktop>
 
@@ -209,12 +207,11 @@ export default function Index() {
                               //displayEmpty
                             //  inputProps={{ 'aria-label': 'Without label' }}
                               >
-                              <MenuItem value="">
-                              <em>None</em>
-                              </MenuItem>
-                              <MenuItem  className = {classes.MenuItemBloc} value={10}>Ten</MenuItem>
-                              <MenuItem  className = {classes.MenuItemBloc} value={20}>Twenty</MenuItem>
-                              <MenuItem  className = {classes.MenuItemBloc} value={30}>Thirty</MenuItem>
+
+                              <MenuItem  className = {classes.MenuItemBloc} value={10}>Programmes Fitness</MenuItem>
+                              <MenuItem  className = {classes.MenuItemBloc} value={20}>Programmes Nutritions</MenuItem>
+                              <MenuItem  className = {classes.MenuItemBloc} value={30}>Thérapies bien-être</MenuItem>
+                              <MenuItem  className = {classes.MenuItemBloc} value={30}>Soins Energetique</MenuItem>
                               </Select>
                           </Tablet>
 
@@ -226,26 +223,26 @@ export default function Index() {
                                 //displayEmpty
                               //  inputProps={{ 'aria-label': 'Without label' }}
                                 >
-                                <MenuItem
-                                  className = {classes.MenuItemBloc}
-                                  value=""
-                                ><em>None</em></MenuItem>
+
                                 <MenuItem
                                 className = {classes.containedRes}
-                                value={10}>Ten</MenuItem>
+                                value={10}>Programmes Fitness</MenuItem>
                                 <MenuItem
                                 className = {classes.containedRes}
-                                value={20}>Twenty</MenuItem>
+                                value={20}>Programmes Nutritions</MenuItem>
                                 <MenuItem
                                 className = {classes.containedRes}
-                                value={30}>Thirty</MenuItem>
+                                value={30}>Thérapies bien-être</MenuItem>
+                                <MenuItem
+                                className = {classes.containedRes}
+                                value={30}>Soins Energetique</MenuItem>
                                 </Select>
                           </Mobile>
                        </div>
                     </div>
 
                     <div className = 'contact-send-input  contact-send-select-info-contact' >
-                          <div className = ' contact-send-input-flex'>
+                          <div className = ' contact-send-input-flex marginLeftContact'>
 
                               <div className = 'contact-send-label' >Prémon</div>
                               <div  className = 'contact-send-input-ctn'><input/></div>
@@ -263,7 +260,7 @@ export default function Index() {
                     <div className = 'contact-send-input contact-send-select-info-contact ' >
                           <div className = ' contact-send-input-flex'>
 
-                              <div className = 'contact-send-label'>Télephont</div>
+                              <div className = 'contact-send-label '>Télephont</div>
                               <div className = 'contact-send-input-ctn'><input/></div>
 
                            </div>

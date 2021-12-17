@@ -441,7 +441,7 @@ border-radius: 500px;
 }
 @media only screen and (max-width: 1024px) and (min-width: 986px){
   .fs-text-ctnt-innere h1 {
-    
+
     font-size: 42px;
   }
 
@@ -561,7 +561,6 @@ border-radius: 500px;
 
   .contact-session-des-zone {
    font-size: 15px;
-   color: red
 
   }
 
@@ -821,5 +820,20 @@ border-radius: 500px;
 
     .contact-session-zn{
       padding-top: 130px;
+    }
+
+    .contact-session-des-zone{
+      margin-bottom: 24px;
+    }
+    .contact-send-input-flex {
+     margin-bottom: 25px;
+    }
+
+    .marginLeftContact{
+      margin-bottom: 25px;
+    }
+
+    .contact-send-select-label, .contact-send-label {
+    width: 100%;
     }
 }

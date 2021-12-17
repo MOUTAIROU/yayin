@@ -107,7 +107,7 @@ export default function Index() {
 
                       <div className = 'fs-text-ctnt-innere-small'><small>Un esprit sain dans un corps sain</small></div>
 
-                      <Button variant="contained" className={ classes.contained }> <Link href='/prendre-rendez-vous' color="inherit">Prendre rende-vous</Link></Button>
+                      <Button variant="contained" className={ classes.contained }> <Link href='/prendre-rendez-vous' color="inherit">Prendre rendez-vous</Link></Button>
                   </div>
               </div>
 
@@ -299,7 +299,7 @@ export default function Index() {
                 </Container>
                 <div className = 'second-five-content-Button'>
                   <Link href='/prendre-rendez-vous' color="inherit">
-                    <Button variant="contained" className={ classes.contained }>Prendre rende-vous</Button>
+                    <Button variant="contained" className={ classes.contained }>Prendre rendez-vous</Button>
                    </Link>
                 </div>
 
