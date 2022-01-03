@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -76,6 +76,35 @@ const redStyles = makeStyles({
 export default function Index() {
    const classes = redStyles();
 
+   function handleClick(state) {
+
+
+
+
+   }
+
+   const [arrayList, setArrayList] = useState([])
+     useEffect( async ()=>{
+
+       const fetchResponse = await fetch(`/api/getalldoc`)
+
+       const resp = await fetchResponse.json()
+
+       let tmpArray = []
+
+         resp.doc.map((item,index) =>{
+        //console.log(item._id);
+        let propertyValues = Object.values(item);
+
+
+          tmpArray[propertyValues['0']] = propertyValues['1']
+         })
+
+
+           setArrayList(tmpArray)
+
+     },[])
+
 
 
   return (
@@ -89,7 +118,7 @@ export default function Index() {
 
               <div className = "contact-session-zn">
 
-                <div className = 'contact-session-title'>Prise de Rendez-Vous</div>
+                <div className = 'contact-session-title'>{arrayList['session31T1']}</div>
 
                 <div className = 'contact-session-des-zone'>
 
@@ -99,31 +128,19 @@ export default function Index() {
 
                                 <li>
 
-                                    <div className = 'contact-session-des-zone'>
-                                        Quanta autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societate generis
-                                        humani, quam conciliavit ipsa natura, ita contracta res est et adducta in angustum ut omnis
-                                        caritas aut inter duos aut inter paucos iungeretur. Quanta autem vis amicitiae sit, ex hoc intellegi
-                                        maxime potest, quod ex infinita societ
-                                   </div>
+                                    <div className = 'contact-session-des-zone'>{arrayList['session31T2']} </div>
                                 </li>
 
                                 <li>
 
-                                    <div className = 'contact-session-des-zone'>
-                                        Quanta autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societate generis
-                                        humani, quam conciliavit ipsa natura, ita contracta res est et adducta in angustum ut omnis
-                                        caritas aut inter duos aut inter paucos iungeretur. Quanta autem vis amicitiae sit, ex hoc intellegi
-                                        maxime potest, quod ex infinita societ
+                                    <div className = 'contact-session-des-zone'>{arrayList['session31T3']}
                                    </div>
 
                                 </li>
 
                                 <li>
                                       <div className = 'contact-session-des-zone'>
-                                          Quanta autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societate generis
-                                          humani, quam conciliavit ipsa natura, ita contracta res est et adducta in angustum ut omnis
-                                          caritas aut inter duos aut inter paucos iungeretur. Quanta autem vis amicitiae sit, ex hoc intellegi
-                                          maxime potest, quod ex infinita societ
+                                          {arrayList['session31T4']}
                                      </div>
                                 </li>
 
@@ -257,7 +274,7 @@ export default function Index() {
                     </div>
 
 
-                    <div className = 'contact-send-input contact-send-select-info-contact ' >
+                    <div className = 'contact-send-input contact-send-select-info-contact margin-top-15' >
                           <div className = ' contact-send-input-flex'>
 
                               <div className = 'contact-send-label '>Télephont</div>

@@ -14,7 +14,8 @@ import Container from '@material-ui/core/Container';
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { StickyNav } from 'react-js-stickynav'
 import 'react-js-stickynav/dist/index.css'
-
+import useIntersection from './components/isIntersecting'
+import Seo from '../seo'
 const redStyles = makeStyles({
   listeMenu: {
     'padding-left': '25px',
@@ -57,6 +58,58 @@ export default function Index(props) {
     setState({ ...state, [anchor]: open });
   };
 
+ const listContact = (anchor) => (
+   <Box
+     sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+     role="presentation"
+     onClick={toggleDrawer(anchor, false)}
+     onKeyDown={toggleDrawer(anchor, false)}
+       className = {classes.listeItem}
+   >
+
+
+     <List >
+       {['Home', 'Promo', 'Nos offres', 'Nous contactez'].map((text, index) => {
+
+         return(
+
+             <ListItem button key={text}   className = {classes.listeItem}>
+
+               <ListItemText
+               className = {classes.listeMenu}
+                onClick = {() => {
+                  if(text == 'Home'){
+                       setTimeout(function(){ handleClick('home') }, 500);
+
+                  }
+
+                  if(text == 'Promo'){
+
+                     setTimeout(function(){ handleClick('promo') }, 500);
+                  }
+
+                  if(text == 'Nos offres'){
+
+                      setTimeout(function(){ handleClick('offre') }, 500);
+
+                  }
+
+                  if(text == 'Nous contactez'){
+                    setTimeout(function(){ handleClick('contact') }, 500);
+
+
+                  }
+                }}
+                primary={text}
+                />
+
+             </ListItem>
+
+         )
+       })}
+     </List>
+   </Box>
+ );
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
@@ -139,11 +192,13 @@ export default function Index(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  
+
   return (
 
     <div>
+
         <nav className  = {`nav-bar not-responsive-nav-bar ${scrollY > 100 ? "hidenavbar" : ""} `}>
+           <Seo/>
                 <img src = './nav-bar.png' />
                 <div className = "nav-bar-contenaire">
 
@@ -153,18 +208,31 @@ export default function Index(props) {
 
                             <div className = 'menu-liste' >
 
-                               <a onClick={() => handleClick('home')}>Home</a>
-                               <a onClick={ () =>  handleClick('promo')}>Promo</a>
-                               <a onClick={ () =>  handleClick('offre')}>Nos offres</a>
-                               <a onClick={ () =>  handleClick('contact')}>Nous contactez</a>
+                               <a
+                                 className = {props.isVisible_Home == true ? 'nav-active-menu' : ''}
+                                 onClick={() => handleClick('home')}>Home</a>
+                                 <a className = {props.isVisible_Promo == true ? 'nav-active-menu' : ''}
+                                 onClick={ () =>  handleClick('promo')}>Promo</a>
+                                 <a className = {props.isVisible_Offre == true ? 'nav-active-menu' : ''}
+                                 onClick={ () =>  handleClick('offre')}>Nos offres</a>
+                                 <a className = {props.isVisible_Contact == true ? 'nav-active-menu' : ''}
+                                 onClick={ () =>  handleClick('contact')}>Nous contactez</a>
 
                             </div>
                             :
                             <div className = 'menu-liste' >
-                               <a onClick={ () => props.handleClick('home')}>Home</a>
-                               <a onClick={ () => props.handleClick('promo')}>Promo</a>
-                               <a onClick={ () => props.handleClick('offre')}>Nos offres</a>
-                               <a onClick={ () => props.handleClick('contact')}>Nous contactez</a>
+                               <a
+                                className = {props.isVisible_Home == true ? 'nav-active-menu' : ''}
+                                onClick={ () => props.handleClick('home')}>Home</a>
+                               <a
+                                className = {props.isVisible_Promo == true ? 'nav-active-menu' : ''}
+                                onClick={ () => props.handleClick('promo')}>Promo</a>
+                               <a
+                                className = {props.isVisible_Offre == true ? 'nav-active-menu' : ''}
+                                onClick={ () => props.handleClick('offre')}>Nos offres</a>
+                               <a
+                                className = {props.isVisible_Contact == true ? 'nav-active-menu' : ''}
+                                onClick={ () => props.handleClick('contact')}>Nous contactez</a>
                             </div>
 
                          }
@@ -181,18 +249,34 @@ export default function Index(props) {
 
                             <div className = 'menu-liste' >
 
-                               <a onClick={() => handleClick('home')}>Home</a>
-                               <a onClick={ () =>  handleClick('promo')}>Promo</a>
-                               <a onClick={ () =>  handleClick('offre')}>Nos offres</a>
-                               <a onClick={ () =>  handleClick('contact')}>Nous contactez</a>
+                               <a
+                               className = {props.isVisible_Home == true ? 'nav-active-menu' : ''}
+                               onClick={() => handleClick('home')}>Home</a>
+                               <a
+                                 className = {props.isVisible_Promo == true ? 'nav-active-menu' : ''}
+                                 onClick={ () =>  handleClick('promo')}>Promo</a>
+                               <a
+                                className = {props.isVisible_Offre == true ? 'nav-active-menu' : ''}
+                                onClick={ () =>  handleClick('offre')}>Nos offres</a>
+                               <a
+                                className = {props.isVisible_Contact == true ? 'nav-active-menu' : ''}
+                                onClick={ () =>  handleClick('contact')}>Nous contactez</a>
 
                             </div>
                             :
                             <div className = 'menu-liste' >
-                               <a onClick={ () => props.handleClick('home')}>Home</a>
-                               <a onClick={ () => props.handleClick('promo')}>Promo</a>
-                               <a onClick={ () => props.handleClick('offre')}>Nos offres</a>
-                               <a onClick={ () => props.handleClick('contact')}>Nous contactez</a>
+                               <a
+                                className = {props.isVisible_Home == true ? 'nav-active-menu' : ''}
+                                onClick={ () => props.handleClick('home')}>Home</a>
+                               <a
+                                 className = {props.isVisible_Promo == true ? 'nav-active-menu' : ''}
+                                 onClick={ () => props.handleClick('promo')}>Promo</a>
+                               <a
+                                className = {props.isVisible_Offre == true ? 'nav-active-menu' : ''}
+                                 onClick={ () => props.handleClick('offre')}>Nos offres</a>
+                               <a
+                                className = {props.isVisible_Contact == true ? 'nav-active-menu' : ''}
+                                 onClick={ () => props.handleClick('contact')}>Nous contactez</a>
                             </div>
 
                          }
@@ -205,7 +289,7 @@ export default function Index(props) {
                 <div className = "nav-bar-contenaire">
                   <Container>
                     <div className = 'nav-bar-resp-menu'>
-                       <div className = 'nav-bar-resp-menu-r'>Ya Yin</div>
+                       <div className = 'nav-bar-resp-menu-r'>Yam Omecteol</div>
                        <div className = 'nav-bar-resp-menu-l'>
                              {[ 'top'].map((anchor) => (
                                <React.Fragment key={anchor}>
@@ -219,7 +303,8 @@ export default function Index(props) {
                                    onClose={toggleDrawer(anchor, false)}
                                    onOpen={toggleDrawer(anchor, true)}
                                  >
-                                   {list(anchor)}
+                                  {  props.isnothome == true ? listContact(anchor) : list(anchor)}
+
                                  </SwipeableDrawer>
                                </React.Fragment>
                              ))}
@@ -237,7 +322,7 @@ export default function Index(props) {
                 <div className = "nav-bar-contenaire">
                   <Container>
                     <div className = 'nav-bar-resp-menu'>
-                       <div className = 'nav-bar-resp-menu-r'>Ya Yin</div>
+                       <div className = 'nav-bar-resp-menu-r'>Yam Omecteol</div>
                        <div className = 'nav-bar-resp-menu-l'>
                              {[ 'top'].map((anchor) => (
                                <React.Fragment key={anchor}>
@@ -251,7 +336,7 @@ export default function Index(props) {
                                    onClose={toggleDrawer(anchor, false)}
                                    onOpen={toggleDrawer(anchor, true)}
                                  >
-                                   {list(anchor)}
+                                   {  props.isnothome == true ? listContact(anchor) : list(anchor)}
                                  </SwipeableDrawer>
                                </React.Fragment>
                              ))}

@@ -68,6 +68,11 @@
     text-align: center;
 }
 
+.nav-active-menu {
+    background-color: #FFE9EF;
+    transition: all 0.5s ease;
+    color: #62495d !important;
+}
 .fs-text-ctnt-innere h1 {
     font-size: 50px;
     color: #FFE9EF;
@@ -589,6 +594,7 @@ border-radius: 500px;
     width: 50%;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
   }
   .nav-bar-resp-menu-l{
     width: 50%;
@@ -688,6 +694,7 @@ border-radius: 500px;
     width: 50%;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
   }
   .nav-bar-resp-menu-l{
     width: 50%;
@@ -776,8 +783,12 @@ border-radius: 500px;
      .contact-send-select-info-contact {
        display: flex;
        flex-direction: column;
+
      }
 
+       .margin-top-15{
+         margin-top:-15px;
+      }
      .fs-text-ctnt-innere {
        transform: translate3d(-50%,5%,0);
       }
@@ -835,5 +846,8 @@ border-radius: 500px;
 
     .contact-send-select-label, .contact-send-label {
     width: 100%;
+    }
+    .second-third-t-text {
+     font-size: 13px;
     }
 }

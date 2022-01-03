@@ -11,6 +11,7 @@ import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { useRouter } from 'next/router'
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+
 const redStyles = makeStyles({
   contained: {
 
@@ -23,6 +24,27 @@ const redStyles = makeStyles({
 });
 
 export default function Index() {
+const [arrayList, setArrayList] = useState([])
+  useEffect( async ()=>{
+
+    const fetchResponse = await fetch(`/api/getalldoc`)
+
+    const resp = await fetchResponse.json()
+
+    let tmpArray = []
+
+      resp.doc.map((item,index) =>{
+     //console.log(item._id);
+     let propertyValues = Object.values(item);
+
+
+       tmpArray[propertyValues['0']] = propertyValues['1']
+      })
+
+      console.log(tmpArray);
+        setArrayList(tmpArray)
+
+  },[])
 
    const classes = redStyles();
    const home = useRef();
@@ -30,9 +52,20 @@ export default function Index() {
    const offre = useRef();
    const contact = useRef();
    const description = useRef();
-     const [scrollY, setScrollY] = useState(0);
+   const [scrollY, setScrollY] = useState(0);
+   const [isVisible_Home, setIsVisible_Home] = useState(true)
+   const [isVisible_Promo, setIsVisible_Promo] = useState(false)
+   const [isVisible_Offre, setIsVisible_Offre] = useState(false)
+   const [isVisible_Contact, setIsVisible_Contact] = useState(false)
+   const [isVisible_Description, setIsVisible_Description] = useState(false)
 
    const router = useRouter()
+
+
+
+
+
+
 
    useEffect(()=>{
       const {ss} = router.query
@@ -41,6 +74,78 @@ export default function Index() {
         setTimeout(function(){ handleClick(ss) }, 500);
 
         const handleScroll = () => {
+
+
+          if(home.current){
+
+
+                if(window.scrollY > home.current.offsetTop && window.scrollY < description.current.offsetTop){
+                  
+
+                  setIsVisible_Home(true)
+                  setIsVisible_Promo(false)
+                  setIsVisible_Offre(false)
+                  setIsVisible_Contact(false)
+                  setIsVisible_Description(false)
+
+                }
+
+            }
+
+
+            if(description.current){
+
+                if(window.scrollY > description.current.offsetTop && window.scrollY < offre.current.offsetTop){
+                   console.log('description');
+                   setIsVisible_Home(false)
+                   setIsVisible_Promo(true)
+                   setIsVisible_Offre(false)
+                   setIsVisible_Contact(false)
+                   setIsVisible_Description(false)
+                }
+
+
+              }
+
+
+              if(offre.current){
+
+                  if(window.scrollY > offre.current.offsetTop && window.scrollY < promo.current.offsetTop){
+                    setIsVisible_Home(false)
+                    setIsVisible_Promo(false)
+                    setIsVisible_Offre(true)
+                    setIsVisible_Contact(false)
+                    setIsVisible_Description(false)
+                 }
+
+                }
+
+
+                if(promo.current){
+
+                  if(window.scrollY > promo.current.offsetTop && window.scrollY < contact.current.offsetTop){
+                    setIsVisible_Home(false)
+                    setIsVisible_Promo(false)
+                    setIsVisible_Offre(false)
+                    setIsVisible_Contact(true)
+                    setIsVisible_Description(false)
+                 }
+              }
+
+              if(contact.current){
+
+
+                  if(window.scrollY  > contact.current.offsetTop){
+                    setIsVisible_Home(false)
+                    setIsVisible_Promo(false)
+                    setIsVisible_Offre(false)
+                    setIsVisible_Contact(false)
+                    setIsVisible_Description(true)
+                   }
+                }
+
+
+
           setScrollY(window.scrollY);
         };
 
@@ -87,6 +192,8 @@ export default function Index() {
    }
 
 
+
+
   return (
       <div>
 
@@ -95,17 +202,22 @@ export default function Index() {
              <NavBar
                  isnothome={false}
                  handleClick={(state)=>handleClick(state)}
+                 isVisible_Home={isVisible_Home}
+                 isVisible_Promo={isVisible_Promo}
+                 isVisible_Offre={isVisible_Offre}
+                 isVisible_Contact={isVisible_Contact}
+                 isVisible_Description={isVisible_Description}
              />
 
               <div className = "fs-text-ctnt">
                   <div className = 'fs-text-ctnt-innere .fs-text-ctnt-innere-sticker'>
                       <div>
-                         <div><h1>COACH DE VIE ENERGETIQUE</h1></div>
+                         <div><h1>{arrayList['sessionT1']}</h1></div>
                       </div>
 
                       <div className = 'fs-text-ctnt-innere-line'/>
 
-                      <div className = 'fs-text-ctnt-innere-small'><small>Un esprit sain dans un corps sain</small></div>
+                      <div className = 'fs-text-ctnt-innere-small'><small>{arrayList['sessionT2']}</small></div>
 
                       <Button variant="contained" className={ classes.contained }> <Link href='/prendre-rendez-vous' color="inherit">Prendre rendez-vous</Link></Button>
                   </div>
@@ -121,21 +233,18 @@ export default function Index() {
              <div className = 'second-session-content'>
 
                <div className = 'second-session-content-l'>
-                 <div className = 'second-session-content-l-bigText'>REPRENEZ LE CONTROLE DE VOTRE VIE</div>
-                 <div className = 'second-session-content-l-small-text'>Physique bien être mental et spirituel</div>
+                 <div className = 'second-session-content-l-bigText'>{arrayList['session2T1']}</div>
+                 <div className = 'second-session-content-l-small-text'>{arrayList['session2T2']}</div>
                   <div className = 'second-session-content-line'/>
                   <div className = 'second-session-content-l-des'>
-                      Le bien-être physique et mental vont toujours de
-                      pair. Inscrivez-vous dès maintenant pour profiter de
-                      nos programmes de remise en forme physique et
-                      thérapies de bien-être !
+                      {arrayList['session2T3']}
 
                   </div>
                </div>
 
                <div className = 'second-session-content-r'>
 
-                   <img src = {'./vie_controle.png'}/>
+                   <img src = {`./${arrayList['session2Image']}`}/>
 
                </div>
 
@@ -147,7 +256,7 @@ export default function Index() {
           <div className = 'second-third' ref={offre}>
           <Container>
                <div className = 'second-third-title'>
-                    <div className = 'second-third-t-text'>NOS OFFRES</div>
+                    <div className = 'second-third-t-text'>{arrayList['session2T3']}</div>
                     <div className = 'second-third-line'/>
                </div>
                 <div className = 'second-third-content'>
@@ -160,33 +269,33 @@ export default function Index() {
                     >
                     <Grid  >
                         <ItemOffre
-                           img = './offre1.png'
-                           title= 'Programmes Fitness'
-                           des='Coach sportif et mental 100 % satisfait remboursées'
+                           img = {arrayList['session3imageOne']}
+                           title= {arrayList['session3T2']}
+                           des={arrayList['session3T3']}
                            margin = "margin-ItemOffre"
                          />
                     </Grid>
                     <Grid  >
                         <ItemOffre
-                            img = './offre2.png'
-                            title= 'Programmes Nutritions'
-                            des='Naturopathie quantique personnalisées'
+                            img = {arrayList['session3imageTwo']}
+                            title= {arrayList['session3T4']}
+                            des={arrayList['session3T5']}
                             margin = "margin-ItemOffre"
                          />
                     </Grid>
                     <Grid >
                         <ItemOffre
-                            img = './offre3.png'
-                            title= 'Thérapies bien-être'
-                            des="Les classes de méditation qui contribuent à promouvoir l'équilibre intérieur"
+                            img = {arrayList['session3imageThree']}
+                            title= {arrayList['session3T6']}
+                            des={arrayList['session3T7']}
                             margin = "margin-ItemOffre"
                          />
                     </Grid>
                     <Grid >
                           <ItemOffre
-                                img = './offre4.png'
-                                title= 'Soins Energetique'
-                                des='HOLISTIQUE RECONNECTION SACRE FEMININ MASCULIN ..'
+                                img = {arrayList['session3imageFour']}
+                                title= {arrayList['session3T8']}
+                                des={arrayList['session3T9']}
                                 margin = "margin-ItemOffre"
                            />
                     </Grid>
@@ -195,35 +304,7 @@ export default function Index() {
 
                 </div>
 
-              {/* <div className = 'second-third-content'>
 
-                      <ItemOffre
-                         img = './offre1.png'
-                         title= 'Programmes Fitness'
-                         des='Coach sportif et mental 100 % satisfait remboursées'
-                         margin = "margin-ItemOffre"
-                       />
-                      <ItemOffre
-                        img = './offre2.png'
-                        title= 'rogrammes Nutritions'
-                        des='Naturopathie quantique personnalisées'
-                        margin = "margin-ItemOffre"
-                      />
-                      <ItemOffre
-                        img = './offre3.png'
-                        title= 'Thérapies bien-être'
-                        des="Les classes de méditation qui contribuent à promouvoir l'équilibre intérieur"
-                        margin = "margin-ItemOffre"
-                      />
-
-                      <ItemOffre
-                        img = './offre4.png'
-                        title= 'Soins Energetique'
-                        des='HOLISTIQUE RECONNECTION SACRE FEMININ MASCULIN ..'
-                        margin = "margin-ItemOffre"
-                      />
-
-               </div> */}
 
 
               </Container>
@@ -233,7 +314,7 @@ export default function Index() {
           <div className = 'second-four' ref={promo}>
           <Container>
                <div className = 'second-four-title'>
-                    <div className = 'second-third-t-four'>PROMO D'ETE</div>
+                    <div className = 'second-third-t-four'>{arrayList['session4T1']}</div>
                     <div className = 'second-four-line'/>
                </div>
 
@@ -245,21 +326,21 @@ export default function Index() {
                <div className = 'second-four-content'>
 
                       <ItemOffre
-                         img = './offre5.png'
-                         title= 'PARAPSYCHOLOGUE - SEXOLOGUE CONSULTATION ACCOMPAGNEMENT 50 EUOROS'
-                         des='SEXUALITE TANTRIQUE 2 SEANCES INITIATION 70 EUROS'
+                          img = {arrayList['session4imageOne']}
+                          title= {arrayList['session4T2']}
+                          des={arrayList['session4T3']}
                          margin = "margin-ItemOffre-third"
                        />
                       <ItemOffre
-                        img = './offre6.png'
-                        title= 'NATUROPATHIE NATUROPATHIE'
-                        des='POIDS COMPRENDRE ET AGIR, GERER SES EMOTIONS ET ADDICTION BILAN 30 EUROS'
+                          img = {arrayList['session4imageTwo']}
+                          title= {arrayList['session4T4']}
+                          des={arrayList['session4T5']}
                         margin = "margin-ItemOffre-third"
                       />
                       <ItemOffre
-                         img = './offre7.png'
-                        title= 'SOINS ENERGIE QUANTIQUE'
-                        des='ANCIENNE MEMOIRE, BLESSURES, EMPECHER CYCLES DE SE REPRODUIRE, SE PROTEGER ET SE PREMUNIR DE CERTAINES ENERGIES...'
+                      img = {arrayList['session4imageThree']}
+                      title= {arrayList['session4T6']}
+                      des={arrayList['session4T7']}
                         margin = "margin-ItemOffre-third"
                       />
 
@@ -274,22 +355,22 @@ export default function Index() {
                 <Container>
                       <div className = 'second-five'>
                           <div className = 'second-five-content-l'>
-                              <div className = 'second-five-content-l-img'> <img src = './nous-contactez.png'/></div>
+                              <div className = 'second-five-content-l-img'> <img src = {`./${arrayList['session5imageOne']}`}/></div>
                           </div>
                           <div className = 'second-five-content-r'>
                               <div className = 'second-five-content-r-z'>
-                                 <div className = 'second-five-content-r-title'>Adresse postale</div>
-                                 <div className = 'second-five-content-r-des'>RUE NAUJAC 33008 BORDEAUX CEDES</div>
+                                 <div className = 'second-five-content-r-title'>{arrayList['session5T1']}</div>
+                                 <div className = 'second-five-content-r-des'>{arrayList['session5T2']}</div>
                               </div>
 
                               <div className = 'second-five-content-r-z'>
-                                 <div className = 'second-five-content-r-title'>Adresse e-mail</div>
-                                 <div className = 'second-five-content-r-des'>Relooktavie@yahoo.fr</div>
+                                 <div className = 'second-five-content-r-title'>{arrayList['session5T3']}</div>
+                                 <div className = 'second-five-content-r-des'>{arrayList['session5T4']}</div>
                               </div>
 
                               <div className = 'second-five-content-r-z'>
-                                 <div className = 'second-five-content-r-title'>Adresse de téléphone</div>
-                                 <div className = 'second-five-content-r-des'>0624254164</div>
+                                 <div className = 'second-five-content-r-title'>{arrayList['session5T5']}</div>
+                                 <div className = 'second-five-content-r-des'>{arrayList['session5T6']}</div>
                               </div>
 
                           </div>
@@ -313,7 +394,7 @@ export default function Index() {
 const ItemOffre = (props) => {
   return(
     <div className = {`offre-item ${props.margin}`}>
-           <div className = 'offre-item-img'> <img src = {props.img}/></div>
+           <div className = 'offre-item-img'> <img src = {`./${props.img}`}/></div>
            <div className = 'offre-item-title'>{props.title}</div>
            <div className = 'offre-item-des'>{props.des}</div>
     </div>
