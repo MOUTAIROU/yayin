@@ -313,7 +313,7 @@ const Session1 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -354,7 +354,7 @@ const Session1 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -488,7 +488,7 @@ const Session2 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enrrégistremant éffectué avec success')
+                        alert('Enregistrement effectué avec succès')
 
                  }
 
@@ -530,7 +530,7 @@ const Session2 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enrrégistremant éffectué avec success')
+                        alert('Enregistrement effectué avec succès')
 
                  }
 
@@ -571,7 +571,7 @@ const Session2 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enrrégistremant éffectué avec success')
+                        alert('Enregistrement effectué avec succès')
 
                  }
 
@@ -613,9 +613,9 @@ const Session2 = (props) => {
 
      if(response.status == 200){
 
-            alert('Enrrégistremant éffectué avec success')
+            alert('Enregistrement effectué avec succès')
      }else {
-         alert("L'image n'est pas valide")
+         alert("Veuillez choisir une image valide")
      }
   };
 
@@ -850,9 +850,9 @@ const Session3 = (props) => {
 
       if(response.status == 200){
 
-             alert('Enrrégistremant éffectué avec success')
+             alert('Enregistrement effectué avec succès')
       }else {
-          alert("L'image n'est pas valide")
+          alert("Veuillez choisir une image valide")
       }
 
    };
@@ -883,9 +883,9 @@ const Session3 = (props) => {
 
      if(response.status == 200){
 
-            alert('Enrrégistremant éffectué avec success')
+            alert('Enregistrement effectué avec succès')
      }else {
-         alert("L'image n'est pas valide")
+         alert("Veuillez choisir une image valide")
      }
 
   };
@@ -916,9 +916,9 @@ const Session3 = (props) => {
 
     if(response.status == 200){
 
-           alert('Enrrégistremant éffectué avec success')
+           alert('Enregistrement effectué avec succès')
     }else {
-        alert("L'image n'est pas valide")
+        alert("Veuillez choisir une image valide")
     }
 
  };
@@ -949,9 +949,9 @@ const Session3 = (props) => {
 
   if(response.status == 200){
 
-         alert('Enrrégistremant éffectué avec success')
+         alert('Enregistrement effectué avec succès')
   }else {
-      alert("L'image n'est pas valide")
+      alert("Veuillez choisir une image valide")
   }
 
 };
@@ -986,7 +986,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -1030,7 +1030,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -1073,7 +1073,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -1117,7 +1117,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -1160,7 +1160,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -1204,7 +1204,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -1248,7 +1248,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -1292,7 +1292,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -1335,7 +1335,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -1777,9 +1777,9 @@ const Session4 = (props) => {
 
       if(response.status == 200){
 
-             alert('Enrrégistremant éffectué avec success')
+             alert('Enregistrement effectué avec succès')
       }else {
-          alert("L'image n'est pas valide")
+          alert("Veuillez choisir une image valide")
       }
 
    };
@@ -1810,9 +1810,9 @@ const Session4 = (props) => {
 
      if(response.status == 200){
 
-            alert('Enrrégistremant éffectué avec success')
+            alert('Enregistrement effectué avec succès')
      }else {
-         alert("L'image n'est pas valide")
+         alert("Veuillez choisir une image valide")
      }
 
   };
@@ -1844,9 +1844,9 @@ const Session4 = (props) => {
 
     if(response.status == 200){
 
-           alert('Enrrégistremant éffectué avec success')
+           alert('Enregistrement effectué avec succès')
     }else {
-        alert("L'image n'est pas valide")
+        alert("Veuillez choisir une image valide")
     }
 
  };
@@ -1881,7 +1881,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -1925,7 +1925,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -1968,7 +1968,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -2012,7 +2012,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -2055,7 +2055,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -2099,7 +2099,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -2143,7 +2143,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -2493,9 +2493,9 @@ const Session5 = (props) => {
 
      if(response.status == 200){
 
-            alert('Enrrégistremant éffectué avec success')
+            alert('Enregistrement effectué avec succès')
      }else {
-         alert("L'image n'est pas valide")
+         alert("Veuillez choisir une image valide")
      }
 
   };
@@ -2530,7 +2530,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enrrégistremant éffectué avec success')
+                        alert('Enregistrement effectué avec succès')
 
                  }
 
@@ -2574,7 +2574,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enrrégistremant éffectué avec success')
+                        alert('Enregistrement effectué avec succès')
 
                  }
 
@@ -2617,7 +2617,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enrrégistremant éffectué avec success')
+                        alert('Enregistrement effectué avec succès')
 
                  }
 
@@ -2661,7 +2661,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enrrégistremant éffectué avec success')
+                        alert('Enregistrement effectué avec succès')
 
                  }
 
@@ -2704,7 +2704,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enrrégistremant éffectué avec success')
+                        alert('Enregistrement effectué avec succès')
 
                  }
 
@@ -2747,7 +2747,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enrrégistremant éffectué avec success')
+                        alert('Enregistrement effectué avec succès')
 
                  }
 
@@ -3033,7 +3033,7 @@ const Session31 = () => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -3077,7 +3077,7 @@ const Session31 = () => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -3120,7 +3120,7 @@ const Session31 = () => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
@@ -3163,7 +3163,7 @@ const Session31 = () => {
 
                   if(resp.status == 200){
 
-                         alert('Enrrégistremant éffectué avec success')
+                         alert('Enregistrement effectué avec succès')
 
                   }
 
