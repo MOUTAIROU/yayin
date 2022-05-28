@@ -1,7 +1,9 @@
 import { MongoClient } from 'mongodb';
 import nextConnect from 'next-connect';
 //mongodb+srv://mouta:Babe0078@cluster0.kjut3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-  const mongoClient = new MongoClient('mongodb+srv://mouta:Babe0078@cluster0.kjut3.mongodb.net/', {
+
+
+  const mongoClient = new MongoClient('mongodb+srv://mouss:Babe0078@cluster0.ymdze4s.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });

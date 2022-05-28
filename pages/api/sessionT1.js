@@ -5,8 +5,7 @@ const handler = nextConnect();
 
 handler.use(middleware);
 handler.post(async (req, res, next) => {
-
-
+console.log('req.body')
   const {sessionT1} = req.body
    console.log("tttttttttttttttt");
    console.log(req.body);

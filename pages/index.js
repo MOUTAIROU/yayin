@@ -256,7 +256,7 @@ const [arrayList, setArrayList] = useState([])
           <div className = 'second-third' ref={offre}>
           <Container>
                <div className = 'second-third-title'>
-                    <div className = 'second-third-t-text'>{arrayList['session2T3']}</div>
+                    <div className = 'second-third-t-text'>{arrayList['session3T1']}</div>
                     <div className = 'second-third-line'/>
                </div>
                 <div className = 'second-third-content'>

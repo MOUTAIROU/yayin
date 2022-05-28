@@ -18,9 +18,10 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
+import Message from './components/message.js'
 
 
-const redStyles = makeStyles({
+const redStyles = makeStyles(theme =>({
 
 headerNav:{
   height: '50px',
@@ -30,6 +31,12 @@ headerNav:{
 sidebar:{
   height: '100vh',
   backgroundColor: '#525252',
+  [theme.breakpoints.down('md')]: {
+    'height': 'auto'
+  },
+  [theme.breakpoints.down('sm')]: {
+    'height': 'auto'
+  }
 },
 color:{
   color:'#efefef',
@@ -91,9 +98,23 @@ BoxUpadateContentImg:{
 paperStyle:{
   padding:'15px',
   marginBottom:"20px"
+},
+
+ul_li:{
+  
+  [theme.breakpoints.down('md')]: {
+    'display': 'inline-flex',
+     'width': 'unset'
+  },
+  [theme.breakpoints.down('sm')]: {
+    'display': 'inline-flex',
+    'width': 'unset'
+  }
+
 }
 
-});
+})
+);
 
 export default function Index() {
    const classes = redStyles();
@@ -117,7 +138,7 @@ export default function Index() {
         tmpArray[propertyValues['0']] = propertyValues['1']
        })
 
-
+        console.log(tmpArray)
          setArrayList(tmpArray)
 
    },[])
@@ -126,12 +147,12 @@ export default function Index() {
 
   return (
       <div>
-
+          
           <Box>
             <Box className = {classes.headerNav}></Box>
             <Box className = {classes.container}>
               <Grid container>
-                <Grid xs = {2} className = {classes.sidebar}>
+                <Grid  xs={12} sm={12} md={2} lg={2}  className = {classes.sidebar}>
                    <Box>
                            <MenuList dense className = {classes.color}>
                                  <Box>
@@ -140,19 +161,19 @@ export default function Index() {
                                  </MenuItem>
                                   <Divider />
                                  </Box>
-                                 <MenuItem className = {classes.color} onClick = {() => setSession('session1')}>
+                                 <MenuItem className = {`${classes.color} ${classes.ul_li}`} onClick = {() => setSession('session1')}>
                                    <ListItemText inset>Session 1</ListItemText>
                                  </MenuItem>
-                                 <MenuItem className = {classes.color} onClick = {() => setSession('session2')}>
+                                 <MenuItem className = {`${classes.color} ${classes.ul_li}`} onClick = {() => setSession('session2')}>
                                    <ListItemText inset>Session 2</ListItemText>
                                  </MenuItem>
-                                 <MenuItem className = {classes.color} onClick = {() => setSession('session3')}>
+                                 <MenuItem className = {`${classes.color} ${classes.ul_li}`} onClick = {() => setSession('session3')}>
                                    <ListItemText inset>Session 3</ListItemText>
                                  </MenuItem>
-                                 <MenuItem className = {classes.color} onClick = {() => setSession('session4')}>
+                                 <MenuItem className = {`${classes.color} ${classes.ul_li}`} onClick = {() => setSession('session4')}>
                                    <ListItemText inset>Session 4</ListItemText>
                                  </MenuItem>
-                                 <MenuItem className = {classes.color} onClick = {() => setSession('session5')}>
+                                 <MenuItem className = {`${classes.color} ${classes.ul_li}`} onClick = {() => setSession('session5')}>
                                    <ListItemText inset>Session 5</ListItemText>
                                  </MenuItem>
 
@@ -164,7 +185,7 @@ export default function Index() {
                                  </MenuItem>
                                  <Divider />
 
-                                 <MenuItem className = {classes.color} onClick = {() => setSession('session31')}>
+                                 <MenuItem className = {`${classes.color} ${classes.ul_li}`} onClick = {() => setSession('session31')}>
                                    <ListItemText inset>Session 1</ListItemText>
                                  </MenuItem>
 
@@ -173,7 +194,7 @@ export default function Index() {
                           </MenuList>
                    </Box>
                 </Grid>
-                <Grid xs = {10} className = {classes.container}>
+                <Grid  xs={12} sm={12} md={10} lg={10}  className = {classes.container}>
                      {
                       session == 'session1' &&
                       <Session1
@@ -239,6 +260,7 @@ export default function Index() {
                       session5T1 = {arrayList['session5T1']}
                       session5T2 = {arrayList['session5T2']}
                       session5T3 = {arrayList['session5T3']}
+                      session5T4 = {arrayList['session5T4']}
                       session5T5 = {arrayList['session5T5']}
                       session5T6 = {arrayList['session5T6']}
                       session5imageOne = {arrayList['session5imageOne']}
@@ -250,7 +272,12 @@ export default function Index() {
                      }
 
                      {
-                      session == 'session31' &&  <Session31/>
+                      session == 'session31' &&  <Session31
+                      session31T1 = {arrayList['session31T1']}
+                      session31T2 = {arrayList['session31T2']}
+                      session31T3 = {arrayList['session31T3']}
+                      session31T4 = {arrayList['session31T4']}
+                      />
                      }
 
 
@@ -281,7 +308,14 @@ const Session1 = (props) => {
    const [value2, setValue2] = useState(props.sessionT2)
    const [checkValue1, setCheckValue1] = useState(false)
    const [checkValue2, setCheckValue2] = useState(false)
+   const [openms,setOpenms] = useState(false)
+   const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
 
+    setOpenms(false);
+   }
 
    const sendData = async (data) => {
 
@@ -313,7 +347,8 @@ const Session1 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                         
+                         setOpenms(true)
 
                   }
 
@@ -354,7 +389,7 @@ const Session1 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -366,8 +401,13 @@ const Session1 = (props) => {
        }
 
    }
+
   return(
     <Box className = {classes.sessionContainer}>
+       <Message 
+        open={openms}
+        handleClose = {() => handleClose()}
+         />
        <Typography  > Page > Home > Session 1</Typography>
 
        <Box className = {classes.sessionContainerText}> Session 1</Box>
@@ -454,6 +494,14 @@ const Session2 = (props) => {
   const [checkValue3, setCheckValue3] = useState(false)
   const [createObjectURL, setCreateObjectURL] = useState(imageName)
   const [image, setImage] = useState()
+  const [openms,setOpenms] = useState(false)
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenms(false);
+   }
 
 
   const sendData = async (data) => {
@@ -488,7 +536,7 @@ const Session2 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enregistrement effectué avec succès')
+                           setOpenms(true)
 
                  }
 
@@ -530,7 +578,7 @@ const Session2 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enregistrement effectué avec succès')
+                  setOpenms(true)
 
                  }
 
@@ -571,7 +619,7 @@ const Session2 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enregistrement effectué avec succès')
+                  setOpenms(true)
 
                  }
 
@@ -613,7 +661,8 @@ const Session2 = (props) => {
 
      if(response.status == 200){
 
-            alert('Enregistrement effectué avec succès')
+            
+            setOpenms(true)
      }else {
          alert("Veuillez choisir une image valide")
      }
@@ -621,6 +670,10 @@ const Session2 = (props) => {
 
   return(
     <Box className = {classes.sessionContainer}>
+       <Message 
+        open={openms}
+        handleClose = {() => handleClose()}
+        />
        <Typography  > Page > Home > Session 2</Typography>
 
        <Box className = {classes.sessionContainerText}> Session 2</Box>
@@ -823,6 +876,14 @@ const Session3 = (props) => {
 
    const [createObjectURLS4, setCreateObjectURLS4] = useState(imageName4)
    const [images4, setImages4] = useState()
+   const [openms,setOpenms] = useState(false)
+   const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenms(false);
+   }
 
     const uploadToClientS1 = (event) => {
      if (event.target.files && event.target.files[0]) {
@@ -850,7 +911,7 @@ const Session3 = (props) => {
 
       if(response.status == 200){
 
-             alert('Enregistrement effectué avec succès')
+        setOpenms(true)
       }else {
           alert("Veuillez choisir une image valide")
       }
@@ -883,7 +944,7 @@ const Session3 = (props) => {
 
      if(response.status == 200){
 
-            alert('Enregistrement effectué avec succès')
+      setOpenms(true)
      }else {
          alert("Veuillez choisir une image valide")
      }
@@ -916,7 +977,7 @@ const Session3 = (props) => {
 
     if(response.status == 200){
 
-           alert('Enregistrement effectué avec succès')
+      setOpenms(true)
     }else {
         alert("Veuillez choisir une image valide")
     }
@@ -949,7 +1010,7 @@ const Session3 = (props) => {
 
   if(response.status == 200){
 
-         alert('Enregistrement effectué avec succès')
+    setOpenms(true)
   }else {
       alert("Veuillez choisir une image valide")
   }
@@ -986,7 +1047,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -1030,7 +1091,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -1073,7 +1134,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -1117,7 +1178,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -1160,7 +1221,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -1204,7 +1265,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -1248,7 +1309,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -1292,7 +1353,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -1335,7 +1396,7 @@ const Session3 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -1351,6 +1412,10 @@ const Session3 = (props) => {
 
   return(
     <Box className = {classes.sessionContainer}>
+       <Message 
+        open={openms}
+        handleClose = {() => handleClose()}
+        />
        <Typography  > Page > Home > Session 3</Typography>
 
 
@@ -1750,6 +1815,16 @@ const Session4 = (props) => {
    const [createObjectURLS3, setCreateObjectURLS3] = useState(imageName3)
    const [images3, setImages3] = useState(null)
 
+   const [openms,setOpenms] = useState(false)
+   const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenms(false);
+   }
+
+
 
     const uploadToClientS1 = (event) => {
      if (event.target.files && event.target.files[0]) {
@@ -1777,7 +1852,7 @@ const Session4 = (props) => {
 
       if(response.status == 200){
 
-             alert('Enregistrement effectué avec succès')
+        setOpenms(true)
       }else {
           alert("Veuillez choisir une image valide")
       }
@@ -1810,7 +1885,7 @@ const Session4 = (props) => {
 
      if(response.status == 200){
 
-            alert('Enregistrement effectué avec succès')
+      setOpenms(true)
      }else {
          alert("Veuillez choisir une image valide")
      }
@@ -1844,7 +1919,7 @@ const Session4 = (props) => {
 
     if(response.status == 200){
 
-           alert('Enregistrement effectué avec succès')
+      setOpenms(true)
     }else {
         alert("Veuillez choisir une image valide")
     }
@@ -1881,7 +1956,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -1925,7 +2000,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -1968,7 +2043,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -2012,7 +2087,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -2040,7 +2115,7 @@ const Session4 = (props) => {
                              'Content-Type': 'application/json',
                          },
                  body: JSON.stringify({
-                       session5T5:value5,
+                       session4T5:value5,
                    })
                   }
 
@@ -2055,7 +2130,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -2099,7 +2174,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -2143,7 +2218,7 @@ const Session4 = (props) => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -2159,6 +2234,12 @@ const Session4 = (props) => {
 
   return(
     <Box className = {classes.sessionContainer}>
+
+      <Message 
+        open={openms}
+        handleClose = {() => handleClose()}
+        />
+
        <Typography  > Page > Home > Session 4  </Typography>
 
 
@@ -2440,6 +2521,7 @@ const Session4 = (props) => {
 
 const Session5 = (props) => {
   let imageName1 = './'+props.session5imageOne;
+  console.log(props)
 
   const classes = redStyles();
   const [opent1, setOpent1] = useState(false)
@@ -2466,6 +2548,15 @@ const Session5 = (props) => {
 
   const [createObjectURLS1, setCreateObjectURLS1] = useState(imageName1)
   const [images1, setImages1] = useState(null)
+  const [openms,setOpenms] = useState(false)
+   const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenms(false);
+   }
+
    const uploadToClientS1 = (event) => {
     if (event.target.files && event.target.files[0]) {
       console.log(event.target.files[0])
@@ -2493,7 +2584,7 @@ const Session5 = (props) => {
 
      if(response.status == 200){
 
-            alert('Enregistrement effectué avec succès')
+      setOpenms(true)
      }else {
          alert("Veuillez choisir une image valide")
      }
@@ -2530,7 +2621,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enregistrement effectué avec succès')
+                  setOpenms(true)
 
                  }
 
@@ -2574,7 +2665,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enregistrement effectué avec succès')
+                  setOpenms(true)
 
                  }
 
@@ -2617,7 +2708,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enregistrement effectué avec succès')
+                  setOpenms(true)
 
                  }
 
@@ -2661,7 +2752,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enregistrement effectué avec succès')
+                  setOpenms(true)
 
                  }
 
@@ -2704,8 +2795,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enregistrement effectué avec succès')
-
+                         setOpenms(true)
                  }
 
                   } catch (e) {
@@ -2747,7 +2837,7 @@ const Session5 = (props) => {
 
                  if(resp.status == 200){
 
-                        alert('Enregistrement effectué avec succès')
+                  setOpenms(true)
 
                  }
 
@@ -2763,6 +2853,12 @@ const Session5 = (props) => {
 
   return(
     <Box className = {classes.sessionContainer}>
+
+       <Message 
+        open={openms}
+        handleClose = {() => handleClose()}
+        />
+
        <Typography  > Page > Home > Session 5 </Typography>
 
        <Box className = {classes.sessionContainerText}> Session 5</Box>
@@ -2988,7 +3084,7 @@ const Session5 = (props) => {
   )
 }
 
-const Session31 = () => {
+const Session31 = (props) => {
    const classes = redStyles();
    const [opent1, setOpent1] = useState(false)
    const [opent2, setOpent2] = useState(false)
@@ -3003,6 +3099,15 @@ const Session31 = () => {
    const [value3, setValue3] = useState('')
    const [checkValue4, setCheckValue4] = useState(false)
    const [value4, setValue4] = useState('')
+   const [openms,setOpenms] = useState(false)
+   const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenms(false);
+   }
+
    const sendData = async (data) => {
 
 
@@ -3033,7 +3138,7 @@ const Session31 = () => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -3077,7 +3182,7 @@ const Session31 = () => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -3120,7 +3225,7 @@ const Session31 = () => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -3163,7 +3268,7 @@ const Session31 = () => {
 
                   if(resp.status == 200){
 
-                         alert('Enregistrement effectué avec succès')
+                    setOpenms(true)
 
                   }
 
@@ -3179,13 +3284,19 @@ const Session31 = () => {
 
   return(
     <Box className = {classes.sessionContainer}>
+
+       <Message 
+         open={openms}
+         handleClose = {() => handleClose()}
+        />
+
        <Typography  > Page > Contact </Typography>
 
        <Box className = {classes.sessionContainerText}> Contact</Box>
 
        <Paper className = {classes.paperStyle} >
            <Box className = {classes.sessionContainerTextList}>
-              <Box className = {classes.sessionContainerTextListItem}>Prise de Rendez-Vous</Box>
+              <Box className = {classes.sessionContainerTextListItem}>{props.session31T1}</Box>
               <Button
                className = {classes.sessionContainerTextListItem}
                onClick = {() => setOpent1(!opent1)}
@@ -3216,9 +3327,7 @@ const Session31 = () => {
 
        <Paper className = {classes.paperStyle} >
            <Box className = {classes.sessionContainerTextList}>
-              <Box className = {classes.sessionContainerTextListItem}>
-                 autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societate generis humani, quam conciliavit ipsa natura, ita contracta res est et adducta in angustum ut omnis caritas aut inter duos aut inter paucos iungeretur. Quanta autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societ
-              </Box>
+              <Box className = {classes.sessionContainerTextListItem}>{props.session31T2}</Box>
               <Button
                className = {classes.sessionContainerTextListItem}
                onClick = {() => setOpent2(!opent2)}
@@ -3248,9 +3357,7 @@ const Session31 = () => {
 
        <Paper className = {classes.paperStyle} >
            <Box className = {classes.sessionContainerTextList}>
-              <Box className = {classes.sessionContainerTextListItem}>
-                 autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societate generis humani, quam conciliavit ipsa natura, ita contracta res est et adducta in angustum ut omnis caritas aut inter duos aut inter paucos iungeretur. Quanta autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societ
-              </Box>
+              <Box className = {classes.sessionContainerTextListItem}>{props.session31T3}</Box>
               <Button
                className = {classes.sessionContainerTextListItem}
                onClick = {() => setOpent3(!opent3)}
@@ -3281,9 +3388,7 @@ const Session31 = () => {
 
        <Paper className = {classes.paperStyle} >
            <Box className = {classes.sessionContainerTextList}>
-              <Box className = {classes.sessionContainerTextListItem}>
-                 autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societate generis humani, quam conciliavit ipsa natura, ita contracta res est et adducta in angustum ut omnis caritas aut inter duos aut inter paucos iungeretur. Quanta autem vis amicitiae sit, ex hoc intellegi maxime potest, quod ex infinita societ
-              </Box>
+              <Box className = {classes.sessionContainerTextListItem}> {props.session31T4}  </Box>
               <Button
                className = {classes.sessionContainerTextListItem}
                onClick = {() => setOpent4(!opent4)}
