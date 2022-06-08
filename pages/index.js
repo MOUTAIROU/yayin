@@ -244,7 +244,7 @@ const [arrayList, setArrayList] = useState([])
 
                <div className = 'second-session-content-r'>
 
-                   <img src = {`./${arrayList['session2Image']}`}/>
+                   <img src = {`${arrayList['session2Image']}`}/>
 
                </div>
 
@@ -355,7 +355,7 @@ const [arrayList, setArrayList] = useState([])
                 <Container>
                       <div className = 'second-five'>
                           <div className = 'second-five-content-l'>
-                              <div className = 'second-five-content-l-img'> <img src = {`./${arrayList['session5imageOne']}`}/></div>
+                              <div className = 'second-five-content-l-img'> <img src = {`${arrayList['session5imageOne']}`}/></div>
                           </div>
                           <div className = 'second-five-content-r'>
                               <div className = 'second-five-content-r-z'>
@@ -394,7 +394,7 @@ const [arrayList, setArrayList] = useState([])
 const ItemOffre = (props) => {
   return(
     <div className = {`offre-item ${props.margin}`}>
-           <div className = 'offre-item-img'> <img src = {`./${props.img}`}/></div>
+           <div className = 'offre-item-img'> <img src = {`${props.img}`}/></div>
            <div className = 'offre-item-title'>{props.title}</div>
            <div className = 'offre-item-des'>{props.des}</div>
     </div>

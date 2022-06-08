@@ -2,139 +2,51 @@ import nextConnect from 'next-connect';
 import middleware from '../../middleware/database';
 var ObjectId = require('mongodb').ObjectId;
 const handler = nextConnect();
-const formidable = require('formidable');
-const fs = require('fs');
-const  path = require('path');
-
-export const config = {
-    api: {
-       bodyParser: false,
-    },
-};
-
-const isFileValid = (file) => {
-  const type = file.mimetype.split("/").pop();
-  const validTypes = ["jpg", "jpeg", "png", "pdf"];
-  if (validTypes.indexOf(type) === -1) {
-    return false;
-  }
-  return true;
-};
 
 handler.use(middleware);
-
 handler.post(async (req, res, next) => {
 
-
-
-        const sendData = new Promise(function(resolve,reject){
-
-
-               const uploadFolder = "./public"
-               const form = new formidable.IncomingForm();
-                      form.maxFilesSize = 50 * 1024 * 1024
-                     form.uploadDir = uploadFolder
-                     form.keepExtensions = true;
-
-                    form.parse(req, (err, fields, files) => {
-
-
-                 const file = files.file;
-
-
-                 // checks if the file is valid
-                const isValid = isFileValid(file);
-
-                // creates a valid name by removing spaces
-                const fileName = encodeURIComponent(file.originalFilename.replace(/\s/g, "-"));
+  console.log( req.body)
+  
+  const {session3imageTwo} = req.body
 
 
 
-                        if (!isValid) {
-                          // throes error if file isn't valid
-                          /*return res.status(400).json({
-                            status: "Fail",
-                            message: "The file type is not a valid type",
-                          });*/
-
-                          reject(400)
-                        }
-
-                        try {
-                           // renames the file in the directory
-                           fs.renameSync(file.filepath, path.join(uploadFolder, fileName));
-                            resolve(path.join(fileName))
-                         } catch (error) {
-                           console.log(error);
-                           reject('error')
-                        }
-
-
-
-
-
-              });
+     let checkFields = await req.db.collection('home').findOne({
+        _id:'session3imageTwo'
      })
 
-    sendData.then(async (value) => {
+
+     if(checkFields == null){
 
 
-      let checkFields = await req.db.collection('home').findOne({
-         _id:'session3imageTwo'
-      })
+             let doc = await req.db.collection('home').insertOne({
+               _id:'session3imageTwo',
+               session3imageTwo:session3imageTwo,
+             })
 
 
-    if(checkFields == null){
+            if(doc.acknowledged == true){
+
+              res.send({status:200})
 
 
-              let doc = await req.db.collection('home').insertOne({
-                _id:'session3imageTwo',
-                 session3imageTwo:value,
-              })
+            }
 
 
+     }else {
 
-             if(doc.acknowledged == true){
+         let doc = await req.db.collection('home').updateOne(
+          {_id:'session3imageTwo'},
+          {$set: {
+            session3imageTwo:session3imageTwo}
+          })
 
-               return res.status(200).json({
-                 status: "success",
-                 message: "success",
-               });
+         res.send({status:200})
 
-             }
-
-
-      }else {
-
-          let doc = await req.db.collection('home').updateOne(
-           {_id:'session3imageTwo'},
-           {$set: {
-             session3imageTwo:value}
-           })
+     }
 
 
-
-           return res.status(200).json({
-             status: "success",
-             message: "success",
-           });
-
-
-
-      }
-
-
-   })
-   .catch(function(e) {
-
-
-     return res.status(400).json({
-               status: "Fail",
-               message: "The file type is not a valid type",
-              });
-
-   });
 });
-
 
 export default handler;

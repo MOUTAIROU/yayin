@@ -297,7 +297,6 @@ export default function Index() {
   );
 }
 
-
 const Session1 = (props) => {
 
 
@@ -309,6 +308,7 @@ const Session1 = (props) => {
    const [checkValue1, setCheckValue1] = useState(false)
    const [checkValue2, setCheckValue2] = useState(false)
    const [openms,setOpenms] = useState(false)
+
    const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -478,7 +478,7 @@ const Session1 = (props) => {
 
 const Session2 = (props) => {
 
- let imageName = './'+props.session2Image;
+ let imageName = props.session2Image;
 
 
   const classes = redStyles();
@@ -647,16 +647,89 @@ const Session2 = (props) => {
     const formData  = new FormData();
 
     formData.append("file", image);
-    for (var key of formData.entries()) {
-        console.log( key[1]);
-    }
+    formData.append('upload_preset', 'my-uploads');
+    
 
+        console.log('tototototot')
 
-        const settings = {
+        const data = await fetch('https://api.cloudinary.com/v1_1/da56nxlqr/image/upload', {
           method: 'POST',
           body: formData
-         }
+        }).then(r => r.json());
 
+        console.log(data.secure_url)
+        
+          if(data.secure_url != undefined){
+            console.log(data.secure_url)
+
+                    const settings = {
+                      method: 'POST',
+                      headers: {
+                                  Accept: 'application/json',
+                                  'Content-Type': 'application/json',
+                              },
+                      body: JSON.stringify({
+                        session2image:data.secure_url,
+                        })
+                      }
+            
+            
+            
+                    try {
+            
+                      const fetchResponse = await fetch(`/api/session2image`, settings)
+            
+                      const resp = await fetchResponse.json()
+            
+            
+                      if(resp.status == 200){
+            
+                              setOpenms(true)
+            
+                      }
+            
+                        } catch (e) {
+                          return e;
+                        }
+
+          }
+
+        /*
+        const settings = {
+          method: 'POST',
+          headers: {
+                      Accept: 'application/json',
+                      'Content-Type': 'application/json',
+                  },
+          body: JSON.stringify({
+                sessionT1:data.secure_url,
+            })
+           }
+
+
+
+        try {
+
+          const fetchResponse = await fetch(`/api/session2image`, settings)
+
+          const resp = await fetchResponse.json()
+
+
+           if(resp.status == 200){
+
+                  
+                  setOpenms(true)
+
+           }
+
+            } catch (e) {
+              return e;
+            }
+
+
+
+        
+      /*       
      const response = await fetch("/api/session2image", settings);
 
      if(response.status == 200){
@@ -666,6 +739,7 @@ const Session2 = (props) => {
      }else {
          alert("Veuillez choisir une image valide")
      }
+     */
   };
 
   return(
@@ -823,13 +897,13 @@ const Session2 = (props) => {
 const Session3 = (props) => {
 
 
-   let imageName1 = './'+props.session3imageOne;
+   let imageName1 = props.session3imageOne;
 
-  let imageName2 = './'+props.session3imageTwo;
+   let imageName2 = props.session3imageTwo;
 
-  let imageName3 = './'+props.session3imageThree;
+   let imageName3 = props.session3imageThree;
 
-  let imageName4 = './'+props.session3imageFour;
+   let imageName4 = props.session3imageFour;
 
 
 
@@ -899,9 +973,56 @@ const Session3 = (props) => {
      const formData  = new FormData();
 
      formData.append("file", images1);
+     formData.append('upload_preset', 'my-uploads');
+    
+
+        console.log('tototototot')
+
+        const data = await fetch('https://api.cloudinary.com/v1_1/da56nxlqr/image/upload', {
+          method: 'POST',
+          body: formData
+        }).then(r => r.json());
+
+        console.log(data.secure_url)
+        
+          if(data.secure_url != undefined){
+            console.log(data.secure_url)
+
+                    const settings = {
+                      method: 'POST',
+                      headers: {
+                                  Accept: 'application/json',
+                                  'Content-Type': 'application/json',
+                              },
+                      body: JSON.stringify({
+                        session3imageOne:data.secure_url,
+                        })
+                      }
+            
+            
+            
+                    try {
+            
+                      const fetchResponse = await fetch(`/api/session3imageOne`, settings)
+            
+                      const resp = await fetchResponse.json()
+            
+            
+                      if(resp.status == 200){
+            
+                              setOpenms(true)
+            
+                      }
+            
+                        } catch (e) {
+                          return e;
+                        }
+
+      }
 
 
-
+ 
+    /*
          const settings = {
            method: 'POST',
            body: formData
@@ -915,6 +1036,8 @@ const Session3 = (props) => {
       }else {
           alert("Veuillez choisir une image valide")
       }
+
+      */
 
    };
 
@@ -932,9 +1055,58 @@ const Session3 = (props) => {
     const formData  = new FormData();
 
     formData.append("file", images2);
+    formData.append('upload_preset', 'my-uploads');
+    
+
+        console.log('tototototot')
+
+        const data = await fetch('https://api.cloudinary.com/v1_1/da56nxlqr/image/upload', {
+          method: 'POST',
+          body: formData
+        }).then(r => r.json());
+
+        console.log(data.secure_url)
+        
+          if(data.secure_url != undefined){
+            console.log(data.secure_url)
+
+                    const settings = {
+                      method: 'POST',
+                      headers: {
+                                  Accept: 'application/json',
+                                  'Content-Type': 'application/json',
+                              },
+                      body: JSON.stringify({
+                        session3imageTwo:data.secure_url,
+                        })
+                      }
+            
+            
+            
+                    try {
+            
+                      const fetchResponse = await fetch(`/api/session3imageTwo`, settings)
+            
+                      const resp = await fetchResponse.json()
+            
+            
+                      if(resp.status == 200){
+            
+                              setOpenms(true)
+            
+                      }
+            
+                        } catch (e) {
+                          return e;
+                        }
+
+      }
+    
 
 
 
+
+     /*
         const settings = {
           method: 'POST',
           body: formData
@@ -948,6 +1120,7 @@ const Session3 = (props) => {
      }else {
          alert("Veuillez choisir une image valide")
      }
+     */
 
   };
 
@@ -965,9 +1138,55 @@ const Session3 = (props) => {
    const formData  = new FormData();
 
    formData.append("file", images3);
+   formData.append('upload_preset', 'my-uploads');
+    
+
+        console.log('tototototot')
+
+        const data = await fetch('https://api.cloudinary.com/v1_1/da56nxlqr/image/upload', {
+          method: 'POST',
+          body: formData
+        }).then(r => r.json());
+
+        console.log(data.secure_url)
+        
+          if(data.secure_url != undefined){
+            console.log(data.secure_url)
+
+                    const settings = {
+                      method: 'POST',
+                      headers: {
+                                  Accept: 'application/json',
+                                  'Content-Type': 'application/json',
+                              },
+                      body: JSON.stringify({
+                        session3imageThree:data.secure_url,
+                        })
+                      }
+            
+            
+            
+                    try {
+            
+                      const fetchResponse = await fetch(`/api/session3imageThree`, settings)
+            
+                      const resp = await fetchResponse.json()
+            
+            
+                      if(resp.status == 200){
+            
+                              setOpenms(true)
+            
+                      }
+            
+                        } catch (e) {
+                          return e;
+                        }
+
+         }
 
 
-
+     /*
        const settings = {
          method: 'POST',
          body: formData
@@ -980,7 +1199,7 @@ const Session3 = (props) => {
       setOpenms(true)
     }else {
         alert("Veuillez choisir une image valide")
-    }
+    }*/
 
  };
 
@@ -997,23 +1216,69 @@ const Session3 = (props) => {
    const uploadToServerS4 = async (event) => {
  const formData  = new FormData();
 
+
  formData.append("file", images4);
+ formData.append('upload_preset', 'my-uploads');
+ console.log('totototootot')
+ const data = await fetch('https://api.cloudinary.com/v1_1/da56nxlqr/image/upload', {
+          method: 'POST',
+          body: formData
+        }).then(r => r.json());
+
+        console.log(data.secure_url)
+        
+          if(data.secure_url != undefined){
+            console.log(data.secure_url)
+
+                    const settings = {
+                      method: 'POST',
+                      headers: {
+                                  Accept: 'application/json',
+                                  'Content-Type': 'application/json',
+                              },
+                      body: JSON.stringify({
+                        session3imageFour:data.secure_url,
+                        })
+                      }
+            
+            
+            
+                    try {
+            
+                      const fetchResponse = await fetch(`/api/session3imageFour`, settings)
+            
+                      const resp = await fetchResponse.json()
+            
+            
+                      if(resp.status == 200){
+            
+                              setOpenms(true)
+            
+                      }
+            
+                        } catch (e) {
+                          return e;
+                        }
+
+         }
 
 
-
+  /*
      const settings = {
        method: 'POST',
        body: formData
       }
 
-  const response = await fetch("/api/session3imageFour", settings);
+   const response = await fetch("/api/session3imageFour", settings);
+
 
   if(response.status == 200){
 
     setOpenms(true)
-  }else {
+    }else {
       alert("Veuillez choisir une image valide")
   }
+  */
 
 };
 
@@ -1778,11 +2043,11 @@ const Session4 = (props) => {
 
 
 
-  let imageName1 = './'+props.session4imageOne;
+  let imageName1 = props.session4imageOne;
 
- let imageName2 = './'+props.session4imageTwo;
+ let imageName2 = props.session4imageTwo;
 
- let imageName3 = './'+props.session4imageThree;
+ let imageName3 = props.session4imageThree;
 
 
    const classes = redStyles();
@@ -1840,9 +2105,55 @@ const Session4 = (props) => {
      const formData  = new FormData();
 
      formData.append("file", images1);
+     formData.append('upload_preset', 'my-uploads');
+    
+
+        console.log('tototototot')
+
+        const data = await fetch('https://api.cloudinary.com/v1_1/da56nxlqr/image/upload', {
+          method: 'POST',
+          body: formData
+        }).then(r => r.json());
+
+        console.log(data.secure_url)
+        
+          if(data.secure_url != undefined){
+            console.log(data.secure_url)
+
+                    const settings = {
+                      method: 'POST',
+                      headers: {
+                                  Accept: 'application/json',
+                                  'Content-Type': 'application/json',
+                              },
+                      body: JSON.stringify({
+                        session4imageOne:data.secure_url,
+                        })
+                      }
+            
+            
+            
+                    try {
+            
+                      const fetchResponse = await fetch(`/api/session4imageOne`, settings)
+            
+                      const resp = await fetchResponse.json()
+            
+            
+                      if(resp.status == 200){
+            
+                              setOpenms(true)
+            
+                      }
+            
+                        } catch (e) {
+                          return e;
+                        }
+
+         }
 
 
-
+      /*
          const settings = {
            method: 'POST',
            body: formData
@@ -1856,6 +2167,7 @@ const Session4 = (props) => {
       }else {
           alert("Veuillez choisir une image valide")
       }
+      */
 
    };
 
@@ -1873,15 +2185,61 @@ const Session4 = (props) => {
     const formData  = new FormData();
 
     formData.append("file", images2);
+     formData.append('upload_preset', 'my-uploads');
+    
+
+        console.log('tototototot')
+
+        const data = await fetch('https://api.cloudinary.com/v1_1/da56nxlqr/image/upload', {
+          method: 'POST',
+          body: formData
+        }).then(r => r.json());
+
+        console.log(data.secure_url)
+        
+          if(data.secure_url != undefined){
+            console.log(data.secure_url)
+
+                    const settings = {
+                      method: 'POST',
+                      headers: {
+                                  Accept: 'application/json',
+                                  'Content-Type': 'application/json',
+                              },
+                      body: JSON.stringify({
+                        session4imageTwo:data.secure_url,
+                        })
+                      }
+            
+            
+            
+                    try {
+            
+                      const fetchResponse = await fetch(`/api/session4imageTwo`, settings)
+            
+                      const resp = await fetchResponse.json()
+            
+            
+                      if(resp.status == 200){
+            
+                              setOpenms(true)
+            
+                      }
+            
+                        } catch (e) {
+                          return e;
+                        }
+
+         }
 
 
-
+      /*
         const settings = {
           method: 'POST',
           body: formData
          }
 
-     const response = await fetch("/api/session4imageTwo", settings);
+       const response = await fetch("/api/session4imageTwo", settings);
 
      if(response.status == 200){
 
@@ -1889,6 +2247,7 @@ const Session4 = (props) => {
      }else {
          alert("Veuillez choisir une image valide")
      }
+     */
 
   };
 
@@ -1906,9 +2265,55 @@ const Session4 = (props) => {
    const formData  = new FormData();
 
    formData.append("file", images3);
+   formData.append('upload_preset', 'my-uploads');
+    
+
+        console.log('tototototot')
+
+        const data = await fetch('https://api.cloudinary.com/v1_1/da56nxlqr/image/upload', {
+          method: 'POST',
+          body: formData
+        }).then(r => r.json());
+
+        console.log(data.secure_url)
+        
+          if(data.secure_url != undefined){
+            console.log(data.secure_url)
+
+                    const settings = {
+                      method: 'POST',
+                      headers: {
+                                  Accept: 'application/json',
+                                  'Content-Type': 'application/json',
+                              },
+                      body: JSON.stringify({
+                        session4imageThree:data.secure_url,
+                        })
+                      }
+            
+            
+            
+                    try {
+            
+                      const fetchResponse = await fetch(`/api/session4imageThree`, settings)
+            
+                      const resp = await fetchResponse.json()
+            
+            
+                      if(resp.status == 200){
+            
+                              setOpenms(true)
+            
+                      }
+            
+                        } catch (e) {
+                          return e;
+                        }
+
+         }
 
 
-
+      /*
        const settings = {
          method: 'POST',
          body: formData
@@ -1922,7 +2327,7 @@ const Session4 = (props) => {
       setOpenms(true)
     }else {
         alert("Veuillez choisir une image valide")
-    }
+    }*/
 
  };
 
@@ -2520,7 +2925,7 @@ const Session4 = (props) => {
 }
 
 const Session5 = (props) => {
-  let imageName1 = './'+props.session5imageOne;
+  let imageName1 = +props.session5imageOne;
   console.log(props)
 
   const classes = redStyles();
@@ -2572,8 +2977,54 @@ const Session5 = (props) => {
     const formData  = new FormData();
 
     formData.append("file", images1);
+    formData.append('upload_preset', 'my-uploads');
+    
 
+        console.log('tototototot')
 
+        const data = await fetch('https://api.cloudinary.com/v1_1/da56nxlqr/image/upload', {
+          method: 'POST',
+          body: formData
+        }).then(r => r.json());
+
+        console.log(data.secure_url)
+        
+          if(data.secure_url != undefined){
+            console.log(data.secure_url)
+
+                    const settings = {
+                      method: 'POST',
+                      headers: {
+                                  Accept: 'application/json',
+                                  'Content-Type': 'application/json',
+                              },
+                      body: JSON.stringify({
+                        session5imageOne:data.secure_url,
+                        })
+                      }
+            
+            
+            
+                    try {
+            
+                      const fetchResponse = await fetch(`/api/session5imageOne`, settings)
+            
+                      const resp = await fetchResponse.json()
+            
+            
+                      if(resp.status == 200){
+            
+                              setOpenms(true)
+            
+                      }
+            
+                        } catch (e) {
+                          return e;
+                        }
+
+         }
+
+    /*
         const settings = {
           method: 'POST',
           body: formData
@@ -2587,7 +3038,7 @@ const Session5 = (props) => {
       setOpenms(true)
      }else {
          alert("Veuillez choisir une image valide")
-     }
+     }*/
 
   };
 
